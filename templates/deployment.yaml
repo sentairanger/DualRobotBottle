@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bottle-dualrobot
+  name: bottle-dualrobot
+  namespace: {{ .Values.namespace.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bottle-dualrobot
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: bottle-dualrobot
+    spec:
+      containers:
+      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: IfNotPresent
+        name: bottle-dualrobot
