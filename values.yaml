@@ -1,8 +1,0 @@
-namespace:
-  name: test
-
-image:
-  repository: linuxrobotgeek/bottle-dualrobot
-  tag: v1.0.0
-
-replicaCount: 1
